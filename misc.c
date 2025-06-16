@@ -139,7 +139,7 @@ lseek(int fd, off_t offset, int whence) {
 
 int
 open (const char *pathname, int flags, ...) {
-
+  // Below initialization is just for test
   vramdisk[0].fid = 0;
   strncpy(vramdisk[0].fname, "file.txt", FNAME_MAX);
   vramdisk[0].fsize = strlen("Hello world!");
