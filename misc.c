@@ -29,12 +29,12 @@ extern int errno;
 #undef MAX_FSIZE
 #undef MAX_FNAME
 #undef MAX_FOPEN
-#undef R
-#undef W
-#undef A
-#undef R_PLUS
-#undef W_PLUS
-#undef A_PLUS
+#undef MODE_R
+#undef MODE_W
+#undef MODE_A
+#undef MODE_R_PLUS
+#undef MODE_W_PLUS
+#undef MODE_A_PLUS
 #undef ERR_FILE_NOT_FOUND
 #undef ERR_VRAMDISK_FULL
 
