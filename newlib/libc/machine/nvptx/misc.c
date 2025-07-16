@@ -14,10 +14,6 @@
  * they apply.
  */
 
-#ifndef __NVPTX__
-#define __NVPTX__
-#endif
-
 #define __test__
 
 #include <stdio.h>
@@ -65,8 +61,7 @@ enum FileIOErrors {
   ERR_FILE_NOT_FOUND = -2,
   ERR_VRAMDISK_FULL = -3,
   ERR_INVALID_FILE_ID = -4,
-  ERR_FILE_TOO_BIG = -5,
-  ERR_END_OF_FILE = -6
+  ERR_FILE_TOO_BIG = -5
 };
 
 // This is the actual file data structure with its metadata
@@ -109,9 +104,9 @@ static int next_open_file_index = 0;
 
 #ifdef __test__
 static void __test() {
-  //printf ("sizeof(_READ_WRITE_RETURN_TYPE) = %d bytes\n", sizeof(_READ_WRITE_RETURN_TYPE));
-  //printf ("sizeof(_ssize_t) = %d bytes\n", sizeof(_ssize_t));
-  //printf ("sizeof(ssize_t) = %d bytes\n", sizeof(ssize_t));
+  printf ("sizeof(_READ_WRITE_RETURN_TYPE) = %d bytes\n", sizeof(_READ_WRITE_RETURN_TYPE));
+  printf ("sizeof(_ssize_t) = %d bytes\n", sizeof(_ssize_t));
+  printf ("sizeof(ssize_t) = %d bytes\n", sizeof(ssize_t));
   vramdisk[0].fid = 0;
   strncpy(vramdisk[0].fname, "file.txt", MAX_FNAME);
   vramdisk[0].fsize = strlen("Hello world!");
@@ -452,7 +447,7 @@ open (const char *pathname, int flags, ...) {
   return open_files[i].fd;
 }
 
-int
+_READ_WRITE_RETURN_TYPE
 read(int fd, void *buf, size_t count) {
 
   // Why are you passing illegal file descriptors bruh? :-(
@@ -487,7 +482,7 @@ read(int fd, void *buf, size_t count) {
   return new_count;
 }
 
-int
+_READ_WRITE_RETURN_TYPE
 write (int fd, const void *buf, size_t count) {
 
   // Why are you passing illegal file descriptors bruh? :-(
