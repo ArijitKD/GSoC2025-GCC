@@ -1,0 +1,107 @@
+#!/bin/bash
+
+# Prefixes
+export SRC_PREFIX="$HOME/Desktop/Projects/GSoC-2025/src"
+export BUILD_PREFIX="$HOME/Desktop/Projects/GSoC-2025/build"
+export INSTALL_PREFIX="$HOME/Desktop/Projects/GSoC-2025/install/nvptx-none-gcc"
+export LIT="$HOME/Desktop/Projects/GSoC-2025/test/lit-18.1.8/lit.py"
+
+# make build args
+export JOBS=$(( $(nproc) ))
+export LOAD=$(( $JOBS / 2 ))
+export BUILD_ARGS="-j$JOBS -l$LOAD"
+
+# GCC
+export GCC_SRCDIR="$SRC_PREFIX/gcc"
+export GCC_BUILDDIR="$BUILD_PREFIX/nvptx-none-gcc"
+
+# nvptx-none-gcc build dir may not exist, create it if not
+mkdir -p $GCC_BUILDDIR
+export GCC_CONFIGURE_REL=\
+$(realpath $GCC_SRCDIR/configure --relative-to=$GCC_BUILDDIR)
+
+# nvptx-tools
+export NVPTXTOOLS_SRCDIR="$SRC_PREFIX/nvptx-tools"
+export NVPTXTOOLS_BUILDDIR="$BUILD_PREFIX/nvptx-tools"
+
+# nvptx-tools build dir may not exist, create it if not
+mkdir -p $NVPTXTOOLS_BUILDDIR
+export NVPTXTOOLS_CONFIGURE_REL=\
+$(realpath $NVPTXTOOLS_SRCDIR/configure --relative-to=$NVPTXTOOLS_BUILDDIR)
+
+# Install dir may not exist, create it if not
+mkdir -p $INSTALL_PREFIX
+
+# Save the current working directory
+export CWD=$(realpath .)
+
+# Run nvptx-tools' configure script from its build directory
+cd $NVPTXTOOLS_BUILDDIR
+
+echo "Created build and install directories."
+
+printf "\nRun configure script for nvptx-tools? [Y/N]: "
+read choice
+
+if [[ "${choice,,}" = "y" ]]; then
+    $NVPTXTOOLS_CONFIGURE_REL \
+        --target=nvptx-none \
+        --prefix="$INSTALL_PREFIX"
+        --disable-silent-rules
+else
+    echo "Skipped configure for nvptx-tools. Build will be incremental."
+fi
+
+# Build nvptx-tools and install it
+make $BUILD_ARGS
+make install
+echo "nvptx-tools build completed."
+
+# Run GCC's configure script from its build directory
+cd $GCC_BUILDDIR
+
+printf "\nRun configure script for GCC? [Y/N]: "
+read choice
+
+if [[ "${choice,,}" = "y" ]]; then
+    $GCC_CONFIGURE_REL \
+        --target=nvptx-none \
+        --prefix="$INSTALL_PREFIX" \
+        --disable-build-format-warnings \
+        --disable-silent-rules \
+        --disable-sjlj-exceptions \
+        --enable-languages=c \
+        --enable-newlib-io-long-long \
+        --with-build-time-tools="$INSTALL_PREFIX/nvptx-none/bin" \
+        --with-build-sysroot="$INSTALL_PREFIX/nvptx-none"
+else
+    echo "Skipped configure for gcc. Build will be incremental."
+fi
+
+# Build nvptx-none-gcc and install it
+make $BUILD_ARGS
+make install
+echo "nvptx-none-gcc build completed."
+
+## Testing phase
+printf "\nPerform tests? [Y/N]: "
+read choice
+
+if [[ "${choice,,}" = "y" ]]; then
+    cd $NVPTXTOOLS_BUILDDIR
+    make $BUILD_ARGS \
+        check LIT=$LIT \
+        LITFLAGS='--echo-all-commands --output test/log.json'
+
+    cd $GCC_BUILDDIR
+    make -k \
+        check-gcc-c \
+        NVPTX_NONE_RUN="$NVPTXTOOLS_BUILDDIR/nvptx-none-run" \
+        DEJAGNU="$NVPTXTOOLS_BUILDDIR/dejagnu.exp" \
+        RUNTESTFLAGS="--target_board=nvptx-none-run --all nvptx.exp"
+else
+    echo "Tests skipped."
+fi
+
+# Restore the current working directory
+cd $CWD
