@@ -231,9 +231,8 @@ static int read_entry_data(struct File *file, void *buf, size_t count, int *new_
     *new_count_ref = 0;
     return 0;
   }
-  size_t bytes_to_write = count - file->offset;
-  *new_count_ref = bytes_to_write > 0 ? bytes_to_write : count;
-  memcpy(buf, (file->entref)->data + file->offset, *new_count_ref);
+  memcpy(buf, (file->entref)->data + file->offset, count);
+  *new_count_ref = count;
   return 0;
 }
 
