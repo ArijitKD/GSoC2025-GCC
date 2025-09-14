@@ -11,7 +11,4 @@ Thomas Schwinge, Tobias Burnus
 
 
 ## Project Background
-The GCC compiler supports a wide range of processor architectures for generating the corresponding binaries. This is not just limited to conventional CPUs, but also accelerator devices such as _Graphical Processing Units_ (GPUs), better known as graphics cards. GPUs have their own machine code which the GCC compiler, built specifically for that purpose, is capable of generating.
-
-Through a process called _Offloading_, it is possible to run a conventional GCC-compiled code on accelerator devices such as GPUs either partially or wholly.
-
+The GCC compiler supports a wide range of processor architectures for generating the corresponding binaries. This is not just limited to conventional CPUs, but also accelerator devices such as _Graphical Processing Units_ (GPUs), better known as graphics cards. The GCC compiler, built specifically for a given GPU architecture, is capable of generating an intermediate machine code which get Just-In-Time (JIT) compiled by the underlying GPU vendor-specific toolchains. Through a process called _Offloading_, it is possible to run a conventional GCC-compiled code on accelerator devices such as GPUs. The _OpenMP/OpenACC_ APIs implemented in GCC provide a backend for this purpose.
