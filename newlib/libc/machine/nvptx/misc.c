@@ -181,6 +181,9 @@ static int find_entry(const char *name, struct Entry **entref_ptr) {
 /* Searches for the entry with the given name in the file system.
  * TODO: Optimize searching algorithm
  */
+  if (!name || !entref_ptr)
+    return ERR_NULLPTR;
+
   for (int i = 0; i < MAX_FILES; ++i) {
     if (!strcmp(vramfs[i].name, name)) {
       *entref_ptr = vramfs + i;
@@ -196,6 +199,9 @@ static int init_entry(const char *name, struct Entry **entref_ptr) {
  * the file system. Caller should verify this by running find_entry().
  * TODO: Optimize searching algorithm
  */
+  if (!name || !entref_ptr)
+    return ERR_NULLPTR;
+
   for (int i = 0; i < MAX_FILES; ++i) {
     if (!strcmp(vramfs[i].name, "")) {
       strncpy(vramfs[i].name, name, MAX_FNAME);
@@ -223,7 +229,7 @@ static int read_entry_data(struct File *file, void *buf, size_t count, int *new_
 /* Read the data from the file system entry that file's entref points to. Reading is started
  * from file's offset. Read data is copied into buf. On success, 0 is returned.
  */
-  if ((!file) || (!file->entref))
+  if ((!file) || (!file->entref) || (!buf))
     return ERR_NULLPTR;
 
   // If the data is NULL, don't modify buf & set *new_count_ref to 0 because there's no data (no error)
@@ -242,7 +248,7 @@ static int write_entry_data(struct File *file, const void *buf, size_t count, in
   * *file should be a valid element of the open_files file table, otherwise KA-BOOM!!!
   */
 
-  if ((!file) || (!file->entref))
+  if ((!file) || (!file->entref) || (!buf))
     return ERR_NULLPTR;
 
   // If file is an element of open_files (which it should be), below should give the fd.
