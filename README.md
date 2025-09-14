@@ -35,7 +35,7 @@ struct Entry {
     char *data;
 }
 ```
-Each entry in the filesystem is initialized to `{.name = "", .size = 0, .data = NULL}` which represents an empty slot. Additionally, a special entry `{.name = "/dev/null", .size = 0, .data = NULL}` has been implemented to simulate the null device on POSIX systems. 
+Each Entry in `vramfs` is initialized to `{.name = "", .size = 0, .data = NULL}` which represents an empty slot. Additionally, a special entry `{.name = "/dev/null", .size = 0, .data = NULL}` has been implemented to simulate the null device on POSIX systems. 
 
 A second statically allocated buffer (called `open_files`) keeps track of all the files that are currently open. In the context of this filesystem, a **File** is a data structure which holds information about the current read/write offset in an Entry's data, the opening mode, and a reference to the Entry that is being operated upon. It looks like this:
 ```
@@ -45,3 +45,4 @@ struct File {
     struct Entry *entref;
 }
 ```
+Each File in `open_files` is initialized to `{.offset = 0, .mode = -1, .entref = NULL}`, representing an empty slot. The index of a non-empty slot in `open_files` gives the file descriptor associated with the corresponding File. File descriptors 0, 1, 2 associate are associated with STDIN, STDOUT, and STDERR as per requirements and pre-initialized accordingly. As such, only file descriptors 3 or higher (upto `MAX_FOPEN - 1`) are available for use.
