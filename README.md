@@ -26,4 +26,12 @@ The project is divided into two main parts:
 
 ## Design and Implementation
 
-#### The Filesystem (`vramfs`)
+### The Filesystem (`vramfs`)
+The filesystem is very simple by design. It is a buffer made up of individual units, singularly called an **Entry**. An **Entry** is a data structure which stores a file's name, size and data. It looks like this:
+```
+struct Entry {
+    char name[MAX_FNAME];
+    size_t size;
+    char *data;
+}
+```
