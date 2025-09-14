@@ -423,10 +423,10 @@ open (const char *pathname, int flags, ...) {
     else {
       clear_entry(entref);
       /* We are not checking for the error code in
-       * clear_entry() here because file
+       * clear_entry() here because entref
        * in this case is guaranteed to be valid.
        * This function returns only ERR_NULLPTR
-       * if file is NULL, otherwise 0.
+       * if entref is NULL, otherwise 0.
        */
     }
     open_files[fd].offset = 0;
