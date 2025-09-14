@@ -22,3 +22,8 @@ This project aims to enable OpenMP/OpenACC file I/O-based offloading tests to ru
 The project is divided into two main parts:
 - Develop an in-memory filesystem that runs entirely in the GPU's memory;
 - Modify the file I/O-based stub syscalls to  interface with this filesystem.
+
+
+## Project Design and Implementation
+
+#### The Filesystem (`vramfs`)
