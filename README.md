@@ -24,6 +24,6 @@ The project is divided into two main parts:
 - Modify the file I/O-based stub syscalls to  interface with this filesystem.
 
 
-## Project Design and Implementation
+## Design and Implementation
 
 #### The Filesystem (`vramfs`)
