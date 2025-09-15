@@ -73,7 +73,7 @@ These should be enough to handle most use cases. In case an attempt is made to o
 Since we have statically allocated buffers, we have constants for imposing the buffer size. These are:
 - `MAX_FILES = 32`: Number of Entries that the filesystem can handle (the `vramfs` buffer)
 - `MAX_FNAME = 32`: Maximum supported file name length, including the terminating `'\0'` character.
-- `MAX_FOPEN = 8`: Maximum number of files that can be open simultaneously.
+- `MAX_FOPEN = 8`: Maximum number of files that can be open simultaneously (Inclusive of STDIN, STDOUT and STDERR).
 
 ### Syscalls
 As of **15 September 2025**, the following syscalls have been implemented:
