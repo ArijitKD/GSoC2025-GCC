@@ -53,16 +53,6 @@ Directories are currently not supported, and was out of scope for this project. 
 ### Locking for open files
 Files that are open are currently 'locked' to prevent unwanted modifications. Calling `open()` for an already open file sets `errno` to `EACCES`.
 
-### Syscalls
-As of **15 September 2025**, the following syscalls have been implemented:
-- `open()`
-- `read()`
-- `write()`
-- `close()`
-These are located in the source files under `<newlib-repo-root>/newlib/libc/machine/nvptx`, especially in `misc.c`.
-
-Other necessary syscalls are expected to be implemented soon.
-
 ### Supported file open modes
 Only a few file open modes have been implemented, keeping in mind the simple usage that the filesystem is intended for. These are:
 - `MODE_R` = `O_RDONLY`, equivalent to the `"r"` mode
@@ -75,6 +65,22 @@ Only a few file open modes have been implemented, keeping in mind the simple usa
 
 These should be enough to handle most use cases. In case an attempt is made to open a file using some other flag combination, `open()` sets `errno` to `ENOTSUP`.
 
+### Filesystem limits
+Since we have statically allocated buffers, we have `#define`s for imposing the buffer size. These are:
+- `MAX_FILES = 32`: Number of Entries that the filesystem can handle (the `vramfs` buffer)
+- `MAX_FNAME = 32`: Maximum supported file name length, including the terminating `'\0'` character.
+- `MAX_FOPEN = 8`: Maximum number of files that can be open simultaneously.
+
+### Syscalls
+As of **15 September 2025**, the following syscalls have been implemented:
+- `open()`
+- `read()`
+- `write()`
+- `close()`
+These are located in the source files under `<newlib-repo-root>/newlib/libc/machine/nvptx`, especially in `misc.c`.
+
+Other necessary syscalls are expected to be implemented soon.
+
 ### POSIX `errno`s used
 - `EBADF`: Used in syscalls accepting a file descriptor (`fd`) to indicate an illegal `fd` value.
 - `ENOSPC`: Used in `write()` and indicates a failure in allocating space for the requested write data, possibly due to memory shortage.
@@ -83,4 +89,3 @@ These should be enough to handle most use cases. In case an attempt is made to o
 - `ENOENT`: Used in `open()`, indicates that the requested Entry was not found in the filesystem.
 - `ENOTSUP`: Used in `open()`, indicates that an unsupported file open mode has been passed.
 - `EACCES`: Used in `open()`, indicates that an attempt has been made to open an already opened file.
-
