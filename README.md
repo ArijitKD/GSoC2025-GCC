@@ -7,7 +7,8 @@ _Implementation of a simple in-memory file system for running offloading tests o
 [Arijit Kumar Das](https://www.linkedin.com/in/arijitkd)
 
 **Mentors:**  
-[Thomas Schwinge](https://www.linkedin.com/in/tschwinge), [Tobias Burnus](https://www.linkedin.com/in/tobias-burnus-0b886a7)
+[Thomas Schwinge](https://www.linkedin.com/in/tschwinge)
+[Tobias Burnus](https://www.linkedin.com/in/tobias-burnus-0b886a7)
 
 ---
 
@@ -80,6 +81,7 @@ As of **15 September 2025**, the following syscalls have been implemented:
 - `read()`
 - `write()`
 - `close()`
+
 These are located in the source files under `<newlib-repo-root>/newlib/libc/machine/nvptx`, especially in `misc.c`.
 
 Other necessary syscalls are expected to be implemented soon.
