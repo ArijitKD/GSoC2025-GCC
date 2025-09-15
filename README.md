@@ -96,6 +96,6 @@ The filesystem related code is still under review, as of **15 September 2025**. 
 
 
 ## Conclusion
-This 14 weeks GSoC period was a productive period for me. I have always wanted to work on real-world systems programming projects, but didn't find a helpful way to start. This was a great learning experience for me, and I believe I have learnt more C in the past few months than in the last half-decade of my experience with C programming.
+This 14 weeks of GSoC was a productive period for me. I have always wanted to work on real-world systems programming projects, but didn't find a helpful way to start. This was a great learning experience for me, and I believe I have learnt more C in the past few months than in the last half-decade of my experience with C programming.
 
-I sincerely thank my mentors for providing constructive feedback on my work and guiding me when required. There's a lot of work that still needs to be done, and I hope to be collaborate with my mentors and stay connected to the GCC project even after GSoC.
+I sincerely thank my mentors for providing constructive feedback on my work and guiding me when required. There's still a lot of work that needs to be done, and I hope to be collaborate with my mentors and stay connected to the GCC project post-GSoC.
