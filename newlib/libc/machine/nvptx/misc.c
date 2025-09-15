@@ -225,7 +225,7 @@ static int clear_entry(struct Entry *entref) {
   return 0;
 }
 
-static int read_entry_data(struct File *file, void *buf, size_t count, int *new_count_ref) {
+static int read_entry_data(struct File *file, void *buf, size_t count, ssize_t *new_count_ref) {
 /* Read the data from the file system entry that file's entref points to. Reading is started
  * from file's offset. Read data is copied into buf. On success, 0 is returned.
  */
@@ -242,7 +242,7 @@ static int read_entry_data(struct File *file, void *buf, size_t count, int *new_
   return 0;
 }
 
-static int write_entry_data(struct File *file, const void *buf, size_t count, int *new_count_ref) {
+static int write_entry_data(struct File *file, const void *buf, size_t count, ssize_t *new_count_ref) {
  /* Write the contents of buf to data of the file system entry that file's entref points to.
   * Writing is started from the file's offset. On success, 0 is returned.
   * *file should be a valid element of the open_files file table, otherwise KA-BOOM!!!
@@ -522,7 +522,7 @@ read(int fd, void *buf, size_t count) {
     return -1;
   }
   
-  int new_count = 0;
+  ssize_t new_count = 0;
 
   // fd is valid file descriptor so no need to check errcode
   read_entry_data(file, buf, count, &new_count);
@@ -551,7 +551,7 @@ write (int fd, const void *buf, size_t count) {
     return -1;
   }
 
-  int new_count = 0;
+  ssize_t new_count = 0;
 
   int errcode = write_entry_data(file, buf, count, &new_count);
   if (errcode == ERR_NO_SPACE) {
