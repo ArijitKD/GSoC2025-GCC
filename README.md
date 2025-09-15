@@ -49,7 +49,7 @@ struct File {
     struct Entry *entref;
 }
 ```
-Each File in `open_files` is initialized to `{.offset = 0, .mode = -1, .entref = NULL}`, representing an empty slot. The index of a non-empty slot in `open_files` gives the file descriptor associated with the corresponding File. File descriptors 0, 1, 2 associate are associated with STDIN, STDOUT, and STDERR as per requirements and pre-initialized accordingly. As such, only file descriptors 3 or higher (upto `MAX_FOPEN - 1`) are available for use.
+Each File in `open_files` is initialized to `{.offset = 0, .mode = -1, .entref = NULL}`, representing an empty slot. The index of a non-empty slot in `open_files` gives the file descriptor associated with the corresponding File. File descriptors 0, 1, 2 are associated with STDIN, STDOUT, and STDERR as per requirements and pre-initialized accordingly. As such, only file descriptors 3 or higher (upto `MAX_FOPEN - 1`) are available for use.
 
 ### Directories
 Directories are currently not supported, and was out of scope for this project. However, if a requirement arises, they may be implemented in the future.
