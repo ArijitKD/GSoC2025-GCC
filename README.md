@@ -9,12 +9,14 @@ Arijit Kumar Das (ArijitKD)
 **Mentors:**  
 Thomas Schwinge, Tobias Burnus
 
+---
 
 ## Project Background
 The GCC compiler supports a wide range of processor architectures for generating the corresponding binaries. This is not just limited to conventional CPUs, but also accelerator devices such as _Graphical Processing Units_ (GPUs), better known as graphics cards. The GCC compiler, built specifically for a given GPU architecture, is capable of generating an intermediate machine code which get Just-In-Time (JIT) compiled by the underlying GPU vendor-specific toolchains. Through a process called _Offloading_, it is possible to run a conventional GCC-compiled code on accelerator devices such as GPUs. The _OpenMP/OpenACC_ APIs implemented in GCC provide a backend for this purpose.
 
 For GCC compilers with offloading support, the Newlib C library is used as the standard library when compiling code with offloading enabled. Newlib provides syscall stubs that need to be implemented for specific architectures. For running OpenMP/OpenACC offloading tests that require performing a file operation, syscalls such as `open()`, `read()`, `write()`, etc. need to be implemented. These syscalls would internally interface with a filesystem that would be running entirely in the GPU's own memory (the VRAM).
 
+---
 
 ## Aim of the Project
 This project aims to enable OpenMP/OpenACC file I/O-based offloading tests to run successfully on NVIDIA GPUs. This specifically requires modifying the stub syscalls in Newlib's NVPTX backend, which is the one used for NVIDIA GPUs.
@@ -23,6 +25,7 @@ The project is divided into two main parts:
 - Develop an in-memory filesystem that runs entirely in the GPU's memory;
 - Modify the file I/O-based stub syscalls to  interface with this filesystem.
 
+---
 
 ## Design and Implementation
 
@@ -90,10 +93,12 @@ Other necessary syscalls are expected to be implemented soon.
 - `ENOTSUP`: Used in `open()`, indicates that an unsupported file open mode has been passed.
 - `EACCES`: Used in `open()`, indicates that an attempt has been made to open an already opened file.
 
+---
 
 ## Merged commits
 The filesystem related code is still under review, as of **15 September 2025**. However, [this commit](https://sourceware.org/git/?p=newlib-cygwin.git;a=commit;h=5d8c71af5e0fa5cdc99d9f741624920e34756418) has been merged to Newlib.
 
+---
 
 ## Conclusion
 This 14 weeks of GSoC was a productive period for me. I have always wanted to work on real-world systems programming projects, but didn't find a helpful way to start. This was a great learning experience for me, and I believe I have learnt more C in the past few months than in the last half-decade of my experience with C programming.
