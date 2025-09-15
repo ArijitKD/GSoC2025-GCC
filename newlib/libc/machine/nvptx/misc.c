@@ -77,7 +77,7 @@ enum FileIOErrors {
   ERR_ENTRY_NOT_FOUND = -2,
   ERR_ENTRIES_EXHAUSTED = -3,
   ERR_NULLPTR = -4,
-  ERR_NO_SPACE = -6
+  ERR_NO_SPACE = -5
 }; 
 
 
