@@ -69,7 +69,7 @@ Only a few file open modes have been implemented, keeping in mind the simple usa
 These should be enough to handle most use cases. In case an attempt is made to open a file using some other flag combination, `open()` sets `errno` to `ENOTSUP`.
 
 ### Filesystem limits
-Since we have statically allocated buffers, we have `#define`s for imposing the buffer size. These are:
+Since we have statically allocated buffers, we have constants for imposing the buffer size. These are:
 - `MAX_FILES = 32`: Number of Entries that the filesystem can handle (the `vramfs` buffer)
 - `MAX_FNAME = 32`: Maximum supported file name length, including the terminating `'\0'` character.
 - `MAX_FOPEN = 8`: Maximum number of files that can be open simultaneously.
