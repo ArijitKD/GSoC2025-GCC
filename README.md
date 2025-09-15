@@ -46,3 +46,21 @@ struct File {
 }
 ```
 Each File in `open_files` is initialized to `{.offset = 0, .mode = -1, .entref = NULL}`, representing an empty slot. The index of a non-empty slot in `open_files` gives the file descriptor associated with the corresponding File. File descriptors 0, 1, 2 associate are associated with STDIN, STDOUT, and STDERR as per requirements and pre-initialized accordingly. As such, only file descriptors 3 or higher (upto `MAX_FOPEN - 1`) are available for use.
+
+### Syscalls
+As of **15 September 2025**, the following syscalls have been implemented:
+- `open()`
+- `read()`
+- `write()`
+- `close()`
+These are located in the source files under `<newlib-repo-root>/newlib/libc/machine/nvptx`, especially in `misc.c`.
+
+### Supported file open modes
+Only a few file open modes have been implemented, keeping in mind the simple usage that the file system is intended for. These are:
+- `MODE_R` = `O_RDONLY`, equivalent to the `"r"` mode
+- `MODE_W` = `(O_WRONLY | O_CREAT | O_TRUNC)`, equivalent to the `"w"` mode
+- `MODE_A` = `(O_WRONLY | O_CREAT | O_APPEND)`, equivalent to the `"a"` mode
+- `MODE_R_PLUS` = `O_RDWR`, equivalent to the `"r+"` mode
+- `MODE_W_PLUS` = `(O_RDWR | O_CREAT | O_TRUNC)`, equivalent to the `"w+"` mode
+- `MODE_A_PLUS` = `(O_RDWR | O_CREAT | O_APPEND)`, equivalent to the `"a+"` mode
+- `MODE_RW_TRUNC` = `(O_RDWR | O_TRUNC)`, special mode for handling STDIO files
