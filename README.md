@@ -4,10 +4,10 @@
 _Implementation of a simple in-memory file system for running offloading tests on NVIDIA GPUs._
 
 **Contributor:**  
-Arijit Kumar Das (ArijitKD)
+[Arijit Kumar Das](https://www.linkedin.com/in/arijitkd)
 
 **Mentors:**  
-Thomas Schwinge, Tobias Burnus
+[Thomas Schwinge](https://www.linkedin.com/in/arijitkd/tschwinge), [Tobias Burnus](https://www.linkedin.com/in/tobias-burnus-0b886a7)
 
 ---
 
