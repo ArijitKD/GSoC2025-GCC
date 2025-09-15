@@ -324,8 +324,9 @@ close(int fd) {
   // Offset should be reset for all open files
   open_files[fd].offset = 0;
 
+  // For all default open files which won't actually be closed
   if (fd < UNRESERVED_FD_START)
-    return 0; // For all default open files which won't actually  be closed
+    return 0;
 
   // Other files are actually closed
   open_files[fd].mode = -1;
