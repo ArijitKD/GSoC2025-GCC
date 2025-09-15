@@ -106,3 +106,10 @@ The filesystem related code is still under review, as of **15 September 2025**. 
 This 14 weeks of GSoC was a productive period for me. I have always wanted to work on real-world systems programming projects, but didn't find a helpful way to start. This was a great learning experience for me, and I believe I have learnt more C in the past few months than in the last half-decade of my experience with C programming.
 
 I sincerely thank my mentors for providing constructive feedback on my work and guiding me when required. There's still a lot of work that needs to be done, and I hope to collaborate with my mentors and stay connected to the GCC project post-GSoC.
+
+---
+
+## Personal Note
+As a personal note, I would like to add that **this project is completely free from LLM-generated code**. The design and implementation is my own idea, perfected by occasional feedbacks from my main mentor **Thomas Schwinge**, who is an expert in the NVPTX toolchain for GCC. Every part of the code has been written based on my own understanding of the concepts, and project requirements.
+
+I'm immensely grateful to my mentors for providing me this learning opportunity and entrusting me with this project, although I didn't have the formal background for the same. I hope I lived up to their expectations, and wish to continue doing the same in whatever work I undertake for GCC.
