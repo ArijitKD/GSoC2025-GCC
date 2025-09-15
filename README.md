@@ -89,3 +89,13 @@ Other necessary syscalls are expected to be implemented soon.
 - `ENOENT`: Used in `open()`, indicates that the requested Entry was not found in the filesystem.
 - `ENOTSUP`: Used in `open()`, indicates that an unsupported file open mode has been passed.
 - `EACCES`: Used in `open()`, indicates that an attempt has been made to open an already opened file.
+
+
+## Merged commits
+The filesystem related code is still under review, as of **15 September 2025**. However, [this commit](https://sourceware.org/git/?p=newlib-cygwin.git;a=commit;h=5d8c71af5e0fa5cdc99d9f741624920e34756418) has been merged to Newlib.
+
+
+## Conclusion
+This 14 weeks GSoC period was a productive period for me. I have always wanted to work on real-world systems programming projects, but didn't find a helpful way to start. This was a great learning experience for me, and I believe I have learnt more C in the past few months than in the last half-decade of my experience with C programming.
+
+I sincerely thank my mentors for providing constructive feedback on my work and guiding me when required. There's a lot of work that still needs to be done, and I hope to be collaborate with my mentors and stay connected to the GCC project even after GSoC.
