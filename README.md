@@ -7,7 +7,7 @@ _Implementation of a simple in-memory file system for running offloading tests o
 [Arijit Kumar Das](https://www.linkedin.com/in/arijitkd)
 
 **Mentors:**  
-[Thomas Schwinge](https://www.linkedin.com/in/tschwinge)
+[Thomas Schwinge](https://www.linkedin.com/in/tschwinge)  
 [Tobias Burnus](https://www.linkedin.com/in/tobias-burnus-0b886a7)
 
 ---
