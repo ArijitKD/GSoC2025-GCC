@@ -75,3 +75,12 @@ Only a few file open modes have been implemented, keeping in mind the simple usa
 
 These should be enough to handle most use cases. In case an attempt is made to open a file using some other flag combination, `open()` sets `errno` to `ENOTSUP`.
 
+### POSIX `errno`s used
+- `EBADF`: Used in syscalls accepting a file descriptor (`fd`) to indicate an illegal `fd` value.
+- `ENOSPC`: Used in `write()` and indicates a failure in allocating space for the requested write data, possibly due to memory shortage.
+- `EFAULT`: Used in syscalls that receive pointers, indicates a NULL pointer exception.
+- `ENFILE`: Used in `open()`, indicates that the maximum number of open files has been reached.
+- `ENOENT`: Used in `open()`, indicates that the requested Entry was not found in the filesystem.
+- `ENOTSUP`: Used in `open()`, indicates that an unsupported file open mode has been passed.
+- `EACCES`: Used in `open()`, indicates that an attempt has been made to open an already opened file.
+
