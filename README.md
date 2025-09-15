@@ -98,7 +98,7 @@ Other necessary syscalls are expected to be implemented soon.
 ---
 
 ## Merged commits
-The filesystem related code is still under review, as of **15 September 2025**. However, [this commit](https://sourceware.org/git/?p=newlib-cygwin.git;a=commit;h=5d8c71af5e0fa5cdc99d9f741624920e34756418) has been merged to Newlib.
+The filesystem related code is still under review, as of **15 September 2025**. However, [this commit](https://sourceware.org/git/?p=newlib-cygwin.git;a=commit;h=5d8c71af5e0fa5cdc99d9f741624920e34756418) has been merged into Newlib.
 
 ---
 
