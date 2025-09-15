@@ -321,10 +321,13 @@ close(int fd) {
     return -1;
   }
 
-  if (fd < UNRESERVED_FD_START)
-    return 0; // For all default open files (STDIN, STDOUT, STDERR)
-
+  // Offset should be reset for all open files
   open_files[fd].offset = 0;
+
+  if (fd < UNRESERVED_FD_START)
+    return 0; // For all default open files which won't actually  be closed
+
+  // Other files are actually closed
   open_files[fd].mode = -1;
   open_files[fd].entref = NULL;
   return 0;
@@ -531,6 +534,7 @@ read(int fd, void *buf, size_t count) {
     return -1;
   }
 
+  file->offset += new_count;
   return new_count;
 }
 
@@ -563,6 +567,7 @@ write (int fd, const void *buf, size_t count) {
     return -1;
   }
 
+  file->offset += new_count;
   return new_count;
 }
 
