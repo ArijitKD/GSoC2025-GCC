@@ -10,6 +10,9 @@ _Implementation of a simple in-memory file system for running offloading tests o
 [Thomas Schwinge](https://www.linkedin.com/in/tschwinge)  
 [Tobias Burnus](https://www.linkedin.com/in/tobias-burnus-0b886a7)
 
+**Duration:**
+2nd June 2025 - 15th September 2025
+
 ---
 
 ## Project Background
