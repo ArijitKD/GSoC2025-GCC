@@ -13,7 +13,7 @@ _Implementation of a simple in-memory file system for running offloading tests o
 **Duration:**  
 2nd June 2025 - 15th September 2025
 
-**[View the project's official Google Summer of Code 2025 listing](https://summerofcode.withgoogle.com/programs/2025/projects/hsckMPiN)**
+**[View the project's official GSoC 2025 listing](https://summerofcode.withgoogle.com/programs/2025/projects/hsckMPiN)**
 
 ---
 
